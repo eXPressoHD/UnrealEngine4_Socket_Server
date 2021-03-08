@@ -16,6 +16,10 @@ public:
     FSocket* ConnectionSocket;
     FIPv4Endpoint RemoteAddressForConnection;
 
+    static const FString DEFAULT_RENDER;
+    static const FString FUGEN_COLOR;
+    static const FString ROTATE_FLOOR;
+
     // Sets default values for this actor's properties
     AServer();
 
@@ -32,6 +36,14 @@ private:
     FString StringFromBinaryArray(const TArray<uint8>& BinaryArray);
     void TCPSocketListener();
     TArray<uint8> ConvertToUTF8(const FString& InString);
+
+    //New
+    void ProcessReceivedMessage(FString message);
+    void SendMessageToClient(const FString& textToSend);
+
+    //Helper
+    FLinearColor HexToLinearColor(int hexColor);
+    
 
 public:
     // Called every frame
